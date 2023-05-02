@@ -11,7 +11,17 @@
     <Window.DataContext>
         <vm:MainWindowVM/>
     </Window.DataContext>
-    <Grid>
-        
-    </Grid>
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Файл" Click="MenuItem_Click">
+                <MenuItem Header="Вихід"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Інфо"/>
+        </Menu>
+        <StatusBar DockPanel.Dock="Bottom">
+        </StatusBar>
+        <Grid>
+            
+        </Grid>
+    </DockPanel>
 </Window>
