@@ -10,7 +10,7 @@ namespace DbWpfApp.ViewModels
     internal class MainWindowVM : ViewModel
     {
         #region Title
-        private string _Title;
+        private string _Title = "Робота з Базою Даних";
 
         /// <summary>
         /// Заголовок вікна
