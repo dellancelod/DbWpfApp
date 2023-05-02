@@ -28,7 +28,7 @@
     <DockPanel>
         <Menu DockPanel.Dock="Top" Background="#282a36" Foreground="White">
             <MenuItem Header="Файл">
-                <MenuItem Header="Вихід"></MenuItem>
+                <MenuItem Header="Вихід" Foreground="#282a36" Command="{Binding CloseApplicationCommand}"></MenuItem>
             </MenuItem>
             <MenuItem Header="Інфо"/>
         </Menu>
