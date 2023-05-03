@@ -65,6 +65,9 @@ namespace DbWpfApp.ViewModels
         {
             _dataManager.AppItems.SaveApp(new AppItem
             {
+                AppName = AppName,
+                UserName = UserName,
+                Comment = Comment
             });
         }
         #endregion
