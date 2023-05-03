@@ -20,13 +20,5 @@ namespace DbWpfApp.Models
         public string UserName { get; set; }
         [Display(Name = "Коментар")]
         public string Comment { get; set; }
-
-        public AppItem(int id, string appName, string userName, string comment)
-        {
-            Id = id;
-            AppName = appName;
-            UserName = userName;
-            Comment = comment;
-        }
     }
 }
