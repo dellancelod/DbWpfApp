@@ -45,21 +45,12 @@ namespace DbWpfApp.ViewModels
         }
         #endregion
 
-        #region AddToDatabaseCommand
-        public ICommand AddToDatabaseCommand { get; }
-        private bool CanAddToDatabaseCommandExecute(object p) => true;
-        private void OnAddToDatabaseCommandExecute(object p)
-        {
-
-        }
-        #endregion
 
         #endregion
 
         public MainWindowVM()
         {
             CloseApplicationCommand = new LambdaCommand(OnCloseApplicationCommandExecute, CanCloseApplicationCommandExecute);
-            AddToDatabaseCommand = new LambdaCommand(OnAddToDatabaseCommandExecute, CanAddToDatabaseCommandExecute);
         }
     }
 }
