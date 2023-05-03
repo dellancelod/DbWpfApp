@@ -117,7 +117,6 @@
     <Compile Include="Infrastructure\Commands\LambdaCommand.cs" />
     <Compile Include="Models\AppItem.cs" />
     <Compile Include="Services\DISource.cs" />
-    <Compile Include="ViewModels\AppItemVM.cs" />
     <Compile Include="ViewModels\Base\ViewModel.cs" />
     <Compile Include="ViewModels\MainWindowVM.cs" />
     <Page Include="Views\Windows\MainWindow.xaml">
