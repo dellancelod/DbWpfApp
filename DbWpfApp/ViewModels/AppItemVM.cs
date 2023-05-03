@@ -71,7 +71,8 @@ namespace DbWpfApp.ViewModels
             });
         }
         #endregion
-        #region AddToDatabaseCommand
+
+        #region DeleteFromDatabaseCommand
         public ICommand DeleteFromDatabaseCommand { get; }
         private bool CanDeleteFromDatabaseCommandExecute(object p) => true;
         private void OnDeleteFromDatabaseCommandExecute(object p)
@@ -79,6 +80,21 @@ namespace DbWpfApp.ViewModels
             _dataManager.AppItems.DeleteApp(Id);
         }
         #endregion
+
+        #region UpdateToDatabaseCommand
+        public ICommand UpdateToDatabaseCommand { get; }
+        private bool CanUpdateToDatabaseCommandExecute(object p) => true;
+        private void OnUpdateToDatabaseCommandExecute(object p)
+        {
+            _dataManager.AppItems.UpdateApp(Id, new AppItem 
+            {
+                AppName = AppName,
+                UserName = UserName,
+                Comment = Comment
+            });
+        }
+        #endregion
+
         #endregion
 
         public AppItemVM(DataManager dataManager)
@@ -86,6 +102,7 @@ namespace DbWpfApp.ViewModels
             _dataManager = dataManager;
             AddToDatabaseCommand = new LambdaCommand(OnAddToDatabaseCommandExecute, CanAddToDatabaseCommandExecute);
             DeleteFromDatabaseCommand = new LambdaCommand(OnDeleteFromDatabaseCommandExecute, CanDeleteFromDatabaseCommandExecute);
+            UpdateToDatabaseCommand = new LambdaCommand(OnUpdateToDatabaseCommandExecute, CanUpdateToDatabaseCommandExecute);
 
         }
     }
