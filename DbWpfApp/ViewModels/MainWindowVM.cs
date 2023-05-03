@@ -1,6 +1,7 @@
 ﻿using DbWpfApp.Data;
 using DbWpfApp.Infrastructure.Commands;
 using DbWpfApp.Models;
+using DbWpfApp.Services;
 using DbWpfApp.ViewModels.Base;
 using System;
 using System.Collections.Generic;
@@ -9,12 +10,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace DbWpfApp.ViewModels
 {
     internal class MainWindowVM : ViewModel
     {
         private readonly DataManager _dataManager;
+        private readonly ToastService _toastService;
 
         #region Properties
         #region Id
@@ -105,6 +108,9 @@ namespace DbWpfApp.ViewModels
             });
 
             AppList = _dataManager.AppItems.GetApps();
+
+            _toastService.ShowToast("My great toast!");
+
         }
         #endregion
 
@@ -138,7 +144,7 @@ namespace DbWpfApp.ViewModels
 
         #endregion
 
-        public MainWindowVM(DataManager dataManager)
+        public MainWindowVM(DataManager dataManager, ToastService toastService)
         {
             _dataManager = dataManager;
             AppList = _dataManager.AppItems.GetApps();
@@ -147,6 +153,19 @@ namespace DbWpfApp.ViewModels
             UpdateToDatabaseCommand = new LambdaCommand(OnUpdateToDatabaseCommandExecute, CanUpdateToDatabaseCommandExecute);
 
             CloseApplicationCommand = new LambdaCommand(OnCloseApplicationCommandExecute, CanCloseApplicationCommandExecute);
+
+            _toastService = toastService;
+
+            _toastService.ToastMessageRecieved += (message) =>
+            {
+                Toast toast = new Toast
+                {
+                    Text = message
+                };
+            };
+
+
+            _toastService.ShowToast("My great toast!");
         }
     }
 }

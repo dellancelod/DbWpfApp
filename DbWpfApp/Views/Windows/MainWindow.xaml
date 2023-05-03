@@ -39,7 +39,7 @@
             </Setter>
         </Style>
     </Window.Resources>
-    
+
     <DockPanel>
         <Grid DockPanel.Dock="Top">
             <Grid.ColumnDefinitions>
@@ -117,6 +117,7 @@
                             </DockPanel>
                         </StackPanel>
 
+                        <s:Toast VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="20"/>
                         <Button Command="{Binding AddToDatabaseCommand}" VerticalAlignment="Top" HorizontalAlignment="Left" Background=" #6272a4" Grid.Column="0"  Grid.Row="1" Content="Додати"/>
                         <Button Command="{Binding UpdateToDatabaseCommand}" VerticalAlignment="Bottom" HorizontalAlignment="Center" Background=" #6272a4" Grid.Column="0"  Grid.Row="1" Content="Оновити" />
                         <TextBox Text="{Binding Id}" PreviewTextInput="NumberValidationTextBox" materialDesign:HintAssist.Hint="ID"   VerticalAlignment="Bottom" HorizontalAlignment="Left" Grid.Column="0"  Grid.Row="1" MinWidth="70" MaxHeight="30" Foreground="White" FontSize="20" TextAlignment="Center" MaxWidth="80"/>
