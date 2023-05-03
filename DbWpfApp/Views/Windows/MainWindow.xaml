@@ -46,22 +46,22 @@
                         <StackPanel Grid.ColumnSpan="2" Grid.Row="0">
                             <DockPanel LastChildFill="True">
                                 <TextBlock Margin="5" VerticalAlignment="Center" DockPanel.Dock="Left" Foreground="White" FontSize="20" MinWidth="160">Назва застосунку</TextBlock>
-                                <TextBox Margin="5" VerticalAlignment="Bottom" Foreground="White" FontSize="20" TextAlignment="Center"/>
+                                <TextBox Text="{Binding AppName}" Margin="5" VerticalAlignment="Bottom" Foreground="White" FontSize="20" TextAlignment="Center"/>
                             </DockPanel>
                             <DockPanel LastChildFill="True">
                                 <TextBlock Margin="5" VerticalAlignment="Center" DockPanel.Dock="Left" Foreground="White" FontSize="20" MinWidth="160">Ім'я користувача</TextBlock>
-                                <TextBox Margin="5" VerticalAlignment="Bottom" Foreground="White" FontSize="20" TextAlignment="Center"/>
+                                <TextBox Text="{Binding UserName}" Margin="5" VerticalAlignment="Bottom" Foreground="White" FontSize="20" TextAlignment="Center"/>
                             </DockPanel>
                             <DockPanel LastChildFill="True">
                                 <TextBlock Margin="5" VerticalAlignment="Center" DockPanel.Dock="Left" Foreground="White" FontSize="20" MinWidth="160">Коментар</TextBlock>
-                                <TextBox Margin="5" VerticalAlignment="Bottom" Foreground="White" FontSize="20" TextAlignment="Center"/>
+                                <TextBox Text="{Binding Comment}" Margin="5" VerticalAlignment="Bottom" Foreground="White" FontSize="20" TextAlignment="Center"/>
                             </DockPanel>
                         </StackPanel>
 
-                        <Button VerticalAlignment="Top" HorizontalAlignment="Left" Background=" #6272a4" Grid.Column="0"  Grid.Row="1" Content="Додати"/>
-                        <Button VerticalAlignment="Bottom" HorizontalAlignment="Center" Background=" #6272a4" Grid.Column="0"  Grid.Row="1" Content="Оновити" />
-                        <TextBox PreviewTextInput="NumberValidationTextBox" materialDesign:HintAssist.Hint="ID"   VerticalAlignment="Bottom" HorizontalAlignment="Left" Grid.Column="0"  Grid.Row="1" MinWidth="70" MaxHeight="30" Foreground="White" FontSize="20" TextAlignment="Center" MaxWidth="80"/>
-                        <Button VerticalAlignment="Bottom" HorizontalAlignment="Right" Background=" #6272a4" Grid.Column="0"  Grid.Row="1" Content="Видалити" />
+                        <Button Command="{Binding AddToDatabaseCommand}" VerticalAlignment="Top" HorizontalAlignment="Left" Background=" #6272a4" Grid.Column="0"  Grid.Row="1" Content="Додати"/>
+                        <Button Command="{Binding UpdateToDatabaseCommand}" VerticalAlignment="Bottom" HorizontalAlignment="Center" Background=" #6272a4" Grid.Column="0"  Grid.Row="1" Content="Оновити" />
+                        <TextBox Text="{Binding Id}" PreviewTextInput="NumberValidationTextBox" materialDesign:HintAssist.Hint="ID"   VerticalAlignment="Bottom" HorizontalAlignment="Left" Grid.Column="0"  Grid.Row="1" MinWidth="70" MaxHeight="30" Foreground="White" FontSize="20" TextAlignment="Center" MaxWidth="80"/>
+                        <Button Command="{Binding DeleteFromDatabaseCommand}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Background=" #6272a4" Grid.Column="0"  Grid.Row="1" Content="Видалити" />
 
                     </Grid>
                 </TabItem>
