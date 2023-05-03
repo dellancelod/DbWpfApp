@@ -70,7 +70,21 @@
                         <TextBlock Text="Дані" Foreground="White"></TextBlock>
                     </TabItem.Header>
                     <ListView ItemsSource="{Binding AppList}" Margin="20 20 20 20">
-                        
+                        <ListView.View>
+                            <GridView>
+                                <GridView.ColumnHeaderContainerStyle>
+                                    <Style TargetType="{x:Type GridViewColumnHeader}">
+                                        <!-- Set any properties you want to set -->
+                                        <Setter Property="Background" Value="#6272a4" />
+                                        <Setter Property="Foreground" Value="White" />
+                                    </Style>
+                                </GridView.ColumnHeaderContainerStyle>
+                                <GridViewColumn  Header="ID" DisplayMemberBinding="{Binding Id}"/>
+                                <GridViewColumn  Header="App Name" DisplayMemberBinding="{Binding AppName}"/>
+                                <GridViewColumn  Header="User Name" DisplayMemberBinding="{Binding UserName}"/>
+                                <GridViewColumn  Header="Comment" DisplayMemberBinding="{Binding Comments}"/>
+                            </GridView>
+                        </ListView.View>
                     </ListView>
                 </TabItem>
 
