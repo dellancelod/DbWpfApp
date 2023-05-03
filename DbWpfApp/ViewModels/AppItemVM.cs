@@ -71,12 +71,22 @@ namespace DbWpfApp.ViewModels
             });
         }
         #endregion
+        #region AddToDatabaseCommand
+        public ICommand DeleteFromDatabaseCommand { get; }
+        private bool CanDeleteFromDatabaseCommandExecute(object p) => true;
+        private void OnDeleteFromDatabaseCommandExecute(object p)
+        {
+            _dataManager.AppItems.DeleteApp(Id);
+        }
+        #endregion
         #endregion
 
         public AppItemVM(DataManager dataManager)
         {
+            _dataManager = dataManager;
             AddToDatabaseCommand = new LambdaCommand(OnAddToDatabaseCommandExecute, CanAddToDatabaseCommandExecute);
-            _dataManager = dataManager; 
+            DeleteFromDatabaseCommand = new LambdaCommand(OnDeleteFromDatabaseCommandExecute, CanDeleteFromDatabaseCommandExecute);
+
         }
     }
 }
