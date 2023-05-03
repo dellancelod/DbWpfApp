@@ -103,6 +103,8 @@ namespace DbWpfApp.ViewModels
                 UserName = UserName,
                 Comment = Comment
             });
+
+            AppList = _dataManager.AppItems.GetApps();
         }
         #endregion
 
@@ -112,6 +114,8 @@ namespace DbWpfApp.ViewModels
         private void OnDeleteFromDatabaseCommandExecute(object p)
         {
             _dataManager.AppItems.DeleteApp(Id);
+
+            AppList = _dataManager.AppItems.GetApps();
         }
         #endregion
 
@@ -126,6 +130,8 @@ namespace DbWpfApp.ViewModels
                 UserName = UserName,
                 Comment = Comment
             });
+
+            AppList = _dataManager.AppItems.GetApps();
         }
 
         #endregion
@@ -135,6 +141,7 @@ namespace DbWpfApp.ViewModels
         public MainWindowVM(DataManager dataManager)
         {
             _dataManager = dataManager;
+            AppList = _dataManager.AppItems.GetApps();
             AddToDatabaseCommand = new LambdaCommand(OnAddToDatabaseCommandExecute, CanAddToDatabaseCommandExecute);
             DeleteFromDatabaseCommand = new LambdaCommand(OnDeleteFromDatabaseCommandExecute, CanDeleteFromDatabaseCommandExecute);
             UpdateToDatabaseCommand = new LambdaCommand(OnUpdateToDatabaseCommandExecute, CanUpdateToDatabaseCommandExecute);
