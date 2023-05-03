@@ -10,7 +10,6 @@ namespace DbWpfApp.Models
 {
     internal class AppItem
     {
-        [Required]
         public int Id { get; set; }
         [Required]
         [Display(Name = "Назва застосунку")]
