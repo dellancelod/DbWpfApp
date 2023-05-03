@@ -83,7 +83,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Data\AppItemsService.cs" />
+    <Compile Include="Data\SQLiteAppItemsService.cs" />
     <Compile Include="Data\DataManager.cs" />
     <Compile Include="Data\IAppItemsRepository.cs" />
     <Compile Include="Infrastructure\Commands\Base\CommandBase.cs" />
