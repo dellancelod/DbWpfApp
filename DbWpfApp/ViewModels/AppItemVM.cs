@@ -15,6 +15,48 @@ namespace DbWpfApp.ViewModels
     {
         private readonly DataManager _dataManager;
 
+        #region Properties
+        #region Id
+        private int _id;
+
+        public int Id
+        {
+            get => _id;
+            set => Set(ref _id, value);
+        }
+        #endregion
+
+        #region AppName
+        private string _appName;
+
+        public string AppName
+        {
+            get => _appName;
+            set => Set(ref _appName, value);
+        }
+        #endregion
+
+        #region UserName
+        private string _userName;
+
+        public string UserName
+        {
+            get => _userName;
+            set => Set(ref _userName, value);
+        }
+        #endregion
+
+        #region Comment
+        private string _comment;
+
+        public string Comment
+        {
+            get => _comment;
+            set => Set(ref _comment, value);
+        }
+        #endregion 
+        #endregion
+
         #region Commands
         #region AddToDatabaseCommand
         public ICommand AddToDatabaseCommand { get; }
@@ -23,7 +65,6 @@ namespace DbWpfApp.ViewModels
         {
             _dataManager.AppItems.SaveApp(new AppItem
             {
-
             });
         }
         #endregion
