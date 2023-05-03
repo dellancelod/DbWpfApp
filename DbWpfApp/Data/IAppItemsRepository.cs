@@ -12,6 +12,6 @@ namespace DbWpfApp.Data
         IQueryable<AppItem> GetApps();
         void SaveApp(AppItem appItem);
         void DeleteApp(int id);
-        void UpdateApp(int id);
+        void UpdateApp(int id, AppItem appItem);
     }
 }
