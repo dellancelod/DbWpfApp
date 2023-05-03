@@ -1,4 +1,5 @@
 ﻿using DbWpfApp.Infrastructure.Commands;
+using DbWpfApp.Models;
 using DbWpfApp.ViewModels.Base;
 using System;
 using System.Collections.Generic;
@@ -15,14 +16,22 @@ namespace DbWpfApp.ViewModels
         #region Title
         private string _Title = "Робота з Базою Даних";
 
-        /// <summary>
-        /// Заголовок вікна
-        /// </summary>
         public string Title
         {
             get => _Title;
             set => Set(ref _Title, value);
         }
+        #endregion
+
+        #region AppList
+
+        private List<AppItem> _AppList;
+
+        public List<AppItem> AppList
+        {
+            get => _AppList;
+            set => Set(ref _AppList, value);
+        } 
         #endregion
 
         #region Commands
@@ -35,6 +44,7 @@ namespace DbWpfApp.ViewModels
             Application.Current.Shutdown();
         }
         #endregion
+
 
         #endregion
 
