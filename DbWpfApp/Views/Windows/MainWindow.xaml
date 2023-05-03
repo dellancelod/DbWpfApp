@@ -117,39 +117,7 @@
                         <TextBox Text="{Binding Id}" PreviewTextInput="NumberValidationTextBox" materialDesign:HintAssist.Hint="ID"   VerticalAlignment="Bottom" HorizontalAlignment="Left" Grid.Column="0"  Grid.Row="1" MinWidth="70" MaxHeight="30" Foreground="White" FontSize="20" TextAlignment="Center" MaxWidth="80"/>
                         <Button Command="{Binding DeleteFromDatabaseCommand}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Background=" #6272a4" Grid.Column="0"  Grid.Row="1" Content="Видалити" />
 
-                        <!-- Notification -->
-                        <Grid RenderTransformOrigin="0,1" Grid.Column="1" Margin="30" Grid.Row="1" >
-                            <Border BorderThickness="1" Background="#bd93f9" BorderBrush="#ffb86c" CornerRadius="10">
-                                <StackPanel Margin="20">
-                                    <TextBlock TextWrapping="Wrap" Margin="5">
-                                    <Bold>Notification</Bold>
-                                    <LineBreak />
-                                    <LineBreak />
-                                    You look awesome!
-                                    </TextBlock>
-                                </StackPanel>
-                            </Border>
-                            <Grid.Triggers>
-                                <EventTrigger RoutedEvent="FrameworkElement.Loaded">
-                                    <BeginStoryboard>
-                                        <Storyboard>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
-                                                <SplineDoubleKeyFrame KeyTime="0:0:0" Value="0"/>
-                                                <SplineDoubleKeyFrame KeyTime="0:0:0.5" Value="1"/>
-                                            </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)">
-                                                <SplineDoubleKeyFrame KeyTime="0:0:2" Value="1"/>
-                                                <SplineDoubleKeyFrame KeyTime="0:0:4" Value="0"/>
-                                            </DoubleAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </BeginStoryboard>
-                                </EventTrigger>
-                            </Grid.Triggers>
-
-                            <Grid.RenderTransform>
-                                <ScaleTransform ScaleY="1" />
-                            </Grid.RenderTransform>
-                        </Grid>
+                        
                     </Grid>
                 </TabItem>
                 <TabItem>
