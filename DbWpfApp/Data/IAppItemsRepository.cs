@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DbWpfApp.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,8 +9,8 @@ namespace DbWpfApp.Data
 {
     internal interface IAppItemsRepository
     {
-        IQueryable<App> GetApps();
-        void SaveApp(App appItem);
+        IQueryable<AppItem> GetApps();
+        void SaveApp(AppItem appItem);
         void DeleteApp(int id);
         void UpdateApp(int id);
     }
