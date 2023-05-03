@@ -9,7 +9,7 @@ namespace DbWpfApp.Data
 {
     internal interface IAppItemsRepository
     {
-        IQueryable<AppItem> GetApps();
+        List<AppItem> GetApps();
         void SaveApp(AppItem appItem);
         void DeleteApp(int id);
         void UpdateApp(int id, AppItem appItem);
