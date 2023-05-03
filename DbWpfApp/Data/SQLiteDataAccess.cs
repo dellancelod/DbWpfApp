@@ -9,7 +9,7 @@ namespace DbWpfApp.Data
 {
     internal class SQLiteDataAccess
     {
-        private static string connectionId = "Default";
+        private static string connectionId = "SQLiteConnectonString";
         public static string LoadConnectionString()
         {
             return ConfigurationManager.ConnectionStrings[connectionId].ConnectionString;
