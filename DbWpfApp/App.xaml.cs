@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Autofac.Features.ResolveAnything;
 using DbWpfApp.Data;
+using DbWpfApp.Services;
 using DbWpfApp.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -32,7 +33,9 @@ namespace DbWpfApp
             builder.RegisterType<DataManager>().InstancePerDependency();
             IContainer container = builder.Build();
 
-            AppItemVM appItemVM = container.Resolve<AppItemVM>();
+            DISource.Resolver = (type) => {
+                return container.Resolve(type);
+            };
         }
     }
 }
