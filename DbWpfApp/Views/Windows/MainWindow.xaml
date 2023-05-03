@@ -9,7 +9,7 @@
         DataContext="{s:DISource Type=vm:MainWindowVM}"
         Height="450" Width="800">
     <Window.Resources>
-
+        <s:WidthConverter x:Key="WidthConverter"></s:WidthConverter>
         <Style x:Key="TabItemText" TargetType="{x:Type TextBlock}">
             <Style.Triggers>
                 <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=TabItem}}" Value="True">
@@ -69,7 +69,7 @@
                     <TabItem.Header>
                         <TextBlock Text="Дані" Foreground="White"></TextBlock>
                     </TabItem.Header>
-                    <ListView ItemsSource="{Binding AppList}" Margin="20 20 20 20">
+                    <ListView ItemsSource="{Binding AppList}" Margin="20 20 20 20" d:ItemsSource="{d:SampleData ItemCount=5}" HorizontalAlignment="Center">
                         <ListView.View>
                             <GridView>
                                 <GridView.ColumnHeaderContainerStyle>
@@ -79,10 +79,10 @@
                                         <Setter Property="Foreground" Value="White" />
                                     </Style>
                                 </GridView.ColumnHeaderContainerStyle>
-                                <GridViewColumn  Header="ID" DisplayMemberBinding="{Binding Id}"/>
-                                <GridViewColumn  Header="App Name" DisplayMemberBinding="{Binding AppName}"/>
-                                <GridViewColumn  Header="User Name" DisplayMemberBinding="{Binding UserName}"/>
-                                <GridViewColumn  Header="Comment" DisplayMemberBinding="{Binding Comments}"/>
+                                <GridViewColumn Width="50" Header="ID" DisplayMemberBinding="{Binding Id}"/>
+                                <GridViewColumn Width="200" Header="App Name" DisplayMemberBinding="{Binding AppName}"/>
+                                <GridViewColumn Width="200" Header="User Name" DisplayMemberBinding="{Binding UserName}"/>
+                                <GridViewColumn Width="200" Header="Comment" DisplayMemberBinding="{Binding Comments}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>
