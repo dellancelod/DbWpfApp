@@ -74,15 +74,38 @@
                             <GridView>
                                 <GridView.ColumnHeaderContainerStyle>
                                     <Style TargetType="{x:Type GridViewColumnHeader}">
-                                        <!-- Set any properties you want to set -->
                                         <Setter Property="Background" Value="#6272a4" />
                                         <Setter Property="Foreground" Value="White" />
                                     </Style>
                                 </GridView.ColumnHeaderContainerStyle>
-                                <GridViewColumn Width="50" Header="ID" DisplayMemberBinding="{Binding Id}"/>
-                                <GridViewColumn Width="200" Header="App Name" DisplayMemberBinding="{Binding AppName}"/>
-                                <GridViewColumn Width="200" Header="User Name" DisplayMemberBinding="{Binding UserName}"/>
-                                <GridViewColumn Width="200" Header="Comment" DisplayMemberBinding="{Binding Comments}"/>
+                                <GridViewColumn Width="50"  Header="ID">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Id}" Foreground="White"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Width="200" Header="App Name">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding AppName}" Foreground="White"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Width="200" Header="User Name">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding UserName}" Foreground="White"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Width="200" Header="Comment">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Comment}" Foreground="White"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
                             </GridView>
                         </ListView.View>
                     </ListView>
