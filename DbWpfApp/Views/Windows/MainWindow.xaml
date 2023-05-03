@@ -13,6 +13,8 @@
         ResizeMode="CanResizeWithGrip"
         Height="450" Width="800"
         Title="{Binding Title}">
+
+    <!--Resources-->
     <Window.Resources>
         <s:WidthConverter x:Key="WidthConverter"></s:WidthConverter>
         <Style x:Key="TabItemText" TargetType="{x:Type TextBlock}">
@@ -45,16 +47,20 @@
                 <ColumnDefinition/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
+            
+            <!--Menu buttons-->
             <Menu Grid.Column="0" Background="#282a36" Foreground="White">
                 <MenuItem Header="Файл">
                     <MenuItem Header="Вихід" Foreground="#282a36" Command="{Binding CloseApplicationCommand}"></MenuItem>
                 </MenuItem>
                 <MenuItem Header="Інфо"/>
-            
             </Menu>
+
+            <!--Draggable-->
             <Grid Grid.Column="1" x:Name="grdHeader"  PreviewMouseLeftButtonDown="Grid_PreviewMouseLeftButtonDown" Background="#282a36">
-                <TextBlock Text="{Binding ElementName=wndwMain,Path=Title}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="15,0" Foreground="White"/>
             </Grid>
+
+            <!--Custom window controls-->
             <Grid Grid.Column="2" Background="#282a36">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="30"/>
@@ -63,7 +69,6 @@
                     <ColumnDefinition Width="30"/>
                 </Grid.ColumnDefinitions>
                 <Button x:Name="btnMinimize" Click="btnMinimize_Click" Style="{StaticResource button}">
-                    <!--<Image Source="minus_medium.png" />-->
                     <Viewbox>
                         <Ellipse Height="15" Width="15" Fill="#bd93f9" Stroke="#FFFDFDFD" StrokeThickness="0.5" />
                     </Viewbox>
@@ -79,11 +84,11 @@
                     </Viewbox>
                 </Button>
             </Grid>
-
         </Grid>
-        
+
+        <!--Main tabs-->
         <Grid Background="#44475a">
-            <TabControl >
+            <TabControl>
                 <TabItem>
                     <TabItem.Header >
                         <TextBlock Text="Робота з БД" Foreground="White"></TextBlock>
@@ -164,18 +169,6 @@
                         </ListView.View>
                     </ListView>
                 </TabItem>
-
-
-
-                <!--<Border MinWidth="400" Margin="15" Background="#6272a4" 
-                    VerticalAlignment="Center" Padding="30" MaxWidth="550" CornerRadius="20">
-                <Border.Effect>
-                    <DropShadowEffect BlurRadius="30" Color="Gray" ShadowDepth="0"/>
-                </Border.Effect>
-                <StackPanel>
-                    <TextBlock Text="Додати об'єкт" FontSize="30" FontWeight="Bold" Foreground="White"/>
-                </StackPanel>
-            </Border>-->
             </TabControl>
         </Grid>
         
