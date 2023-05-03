@@ -18,7 +18,7 @@ namespace DbWpfApp.Data
                  new SQLiteConnection(SQLiteDataAccess.LoadConnectionString()))
             {
                 connection.Open();
-                string deleteApp = $"delete from app where id = {id}";
+                string deleteApp = $"delete from Apps where id = {id}";
                 SQLiteCommand command = new SQLiteCommand(deleteApp, connection);
                 command.ExecuteNonQuery();
             }
@@ -69,8 +69,8 @@ namespace DbWpfApp.Data
                 new SQLiteConnection(SQLiteDataAccess.LoadConnectionString()))
             {
                 connection.Open();
-                string updateApps = $"update Apps set app_name = '{appItem.AppName}' " +
-                    $"user_name = '{appItem.UserName}' comment = '{appItem.Comment}' " +
+                string updateApps = $"update Apps set app_name = '{appItem.AppName}', " +
+                    $"user_name = '{appItem.UserName}', comment = '{appItem.Comment}' " +
                     $"where id = {id}";
                 SQLiteCommand command = new SQLiteCommand(updateApps, connection);
                 command.ExecuteNonQuery();
