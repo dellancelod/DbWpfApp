@@ -10,6 +10,8 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
+using System.Xml.Linq;
 
 namespace DbWpfApp
 {
@@ -18,6 +20,7 @@ namespace DbWpfApp
     /// </summary>
     public partial class App : Application
     {
+        IContainer Container { get; set; }
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
@@ -31,11 +34,19 @@ namespace DbWpfApp
 
             //DataManager is Transient
             builder.RegisterType<DataManager>().InstancePerDependency();
-            IContainer container = builder.Build();
+            Container = builder.Build();
 
-            DISource.Resolver = (type) => {
-                return container.Resolve(type);
-            };
+            DISource.Resolver = Resolve;
+        }
+        object Resolve(Type type, object key, string name)
+        {
+            if (type == null)
+                return null;
+            if (key != null)
+                return Container.ResolveKeyed(key, type);
+            if (name != null)
+                return Container.ResolveNamed(name, type);
+            return Container.Resolve(type);
         }
     }
 }
