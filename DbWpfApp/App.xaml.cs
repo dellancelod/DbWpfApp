@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Autofac;
+using Autofac.Features.ResolveAnything;
+using DbWpfApp.Data;
+using DbWpfApp.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +17,22 @@ namespace DbWpfApp
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+            var builder = new ContainerBuilder();
+
+            //allow the Autofac container resolve unknown types
+            builder.RegisterSource(new AnyConcreteTypeNotAlreadyRegisteredSource());
+
+            //SQLiteAppItemsService is Singleton
+            builder.RegisterType<SQLiteAppItemsService>().As<IAppItemsRepository>().SingleInstance();
+
+            //DataManager is Transient
+            builder.RegisterType<DataManager>().InstancePerDependency();
+            IContainer container = builder.Build();
+
+            AppItemVM appItemVM = container.Resolve<AppItemVM>();
+        }
     }
 }
