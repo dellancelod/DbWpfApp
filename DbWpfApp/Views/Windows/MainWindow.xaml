@@ -6,6 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:DbWpfApp.ViewModels"
         xmlns:s="clr-namespace:DbWpfApp.Services"
+        xmlns:c="clr-namespace:DbWpfApp.Services.Converters"
         DataContext="{s:DISource Type=vm:MainWindowVM}"
         WindowStyle="None"
         Background="{x:Null}" 
@@ -16,7 +17,7 @@
 
     <!--Resources-->
     <Window.Resources>
-        <s:WidthConverter x:Key="WidthConverter"></s:WidthConverter>
+        <c:IntConverter x:Key="IntConverter"/>
         <Style x:Key="TabItemText" TargetType="{x:Type TextBlock}">
             <Style.Triggers>
                 <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=TabItem}}" Value="True">
@@ -118,7 +119,7 @@
                         </StackPanel>
                         <Button Command="{Binding AddToDatabaseCommand}" VerticalAlignment="Top" HorizontalAlignment="Left" Background=" #6272a4" Grid.Column="0"  Grid.Row="1" Content="Додати"/>
                         <Button Command="{Binding UpdateToDatabaseCommand}" VerticalAlignment="Bottom" HorizontalAlignment="Center" Background=" #6272a4" Grid.Column="0"  Grid.Row="1" Content="Оновити" />
-                        <TextBox Text="{Binding Id}" PreviewTextInput="NumberValidationTextBox" materialDesign:HintAssist.Hint="ID"   VerticalAlignment="Bottom" HorizontalAlignment="Left" Grid.Column="0"  Grid.Row="1" MinWidth="70" MaxHeight="30" Foreground="White" FontSize="20" TextAlignment="Center" MaxWidth="80"/>
+                        <TextBox Text="{Binding Path=Id, Converter={StaticResource IntConverter}}" PreviewTextInput="NumberValidationTextBox" materialDesign:HintAssist.Hint="ID"   VerticalAlignment="Bottom" HorizontalAlignment="Left" Grid.Column="0"  Grid.Row="1" MinWidth="70" MaxHeight="30" Foreground="White" FontSize="20" TextAlignment="Center" MaxWidth="80"/>
                         <Button Command="{Binding DeleteFromDatabaseCommand}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Background=" #6272a4" Grid.Column="0"  Grid.Row="1" Content="Видалити" />
                         <s:Toast x:Name="ToastNoty" Opacity ="{Binding ToastProp.Opacity}" Text ="{Binding ToastProp.Text}" ToastIcon="{Binding ToastProp.ToastIcon}" Grid.Column="1" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="20"/>
                     </Grid>
