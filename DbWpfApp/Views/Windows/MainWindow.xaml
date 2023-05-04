@@ -42,6 +42,7 @@
         </Style>
     </Window.Resources>
 
+    <!--Opacity animation-->
     <Window.Triggers>
         <EventTrigger RoutedEvent="FrameworkElement.Loaded">
             <BeginStoryboard>
@@ -51,6 +52,8 @@
             </BeginStoryboard>
         </EventTrigger>
     </Window.Triggers>
+    
+    <!--Main section-->
     <DockPanel>
         <Grid DockPanel.Dock="Top">
             <Grid.ColumnDefinitions>
@@ -100,6 +103,7 @@
         <!--Main tabs-->
         <Grid Background="#44475a">
             <TabControl>
+                <!--Work with DB Tab-->
                 <TabItem>
                     <TabItem.Header >
                         <TextBlock Text="Робота з БД" Foreground="White"></TextBlock>
@@ -127,6 +131,7 @@
                                 <TextBox Text="{Binding Comment}" Margin="5" VerticalAlignment="Bottom" Foreground="White" FontSize="20" TextAlignment="Center"/>
                             </DockPanel>
                         </StackPanel>
+                        
                         <Button Command="{Binding AddToDatabaseCommand}" VerticalAlignment="Top" HorizontalAlignment="Left" Background=" #6272a4" Grid.Column="0"  Grid.Row="1" Content="Додати"/>
                         <Button Command="{Binding UpdateToDatabaseCommand}" VerticalAlignment="Bottom" HorizontalAlignment="Center" Background=" #6272a4" Grid.Column="0"  Grid.Row="1" Content="Оновити" />
                         <TextBox Text="{Binding Path=Id, Converter={StaticResource IntConverter}}" PreviewTextInput="NumberValidationTextBox" materialDesign:HintAssist.Hint="ID"   VerticalAlignment="Bottom" HorizontalAlignment="Left" Grid.Column="0"  Grid.Row="1" MinWidth="70" MaxHeight="30" Foreground="White" FontSize="20" TextAlignment="Center" MaxWidth="80"/>
@@ -134,6 +139,8 @@
                         <s:Toast x:Name="ToastNoty" Opacity ="{Binding ToastProp.Opacity}" Text ="{Binding ToastProp.Text}" ToastIcon="{Binding ToastProp.ToastIcon}" Grid.Column="1" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="20"/>
                     </Grid>
                 </TabItem>
+                
+                <!--Table DB Tab-->
                 <TabItem>
                     <TabItem.Header>
                         <TextBlock Text="Дані" Foreground="White"></TextBlock>
