@@ -3,9 +3,9 @@
                     xmlns:s="clr-namespace:DbWpfApp.Services">
     <Style TargetType="{x:Type s:Toast}">
         <Style.Resources>
-            <SolidColorBrush x:Key="Toast.Static.Background" Color="LightGray" />
+            <SolidColorBrush x:Key="Toast.Static.Background" Color="#bd93f9" />
             <SolidColorBrush x:Key="Toast.Static.BorderBrush" Color="Gray" />
-            <SolidColorBrush x:Key="Toast.Static.Foreground" Color="DimGray" />
+            <SolidColorBrush x:Key="Toast.Static.Foreground" Color="Black" />
         </Style.Resources>
         <Setter Property="Background" Value="{StaticResource Toast.Static.Background}" />
         <Setter Property="BorderBrush" Value="{StaticResource Toast.Static.BorderBrush}" />
