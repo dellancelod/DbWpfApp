@@ -19,6 +19,14 @@ namespace DbWpfApp.ViewModels
         private readonly DataManager _dataManager;
         private readonly ToastService _toastService;
 
+        private Toast _toast;
+
+        public Toast ToastProp
+        {
+            get => _toast;
+            set => Set(ref _toast, value);
+        }
+
         #region Properties
         #region Id
         private int _id;
@@ -158,10 +166,7 @@ namespace DbWpfApp.ViewModels
 
             _toastService.ToastMessageRecieved += (message) =>
             {
-                Toast toast = new Toast
-                {
-                    Text = message
-                };
+                ToastProp.Text = message;
             };
 
 
