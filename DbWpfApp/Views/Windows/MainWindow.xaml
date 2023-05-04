@@ -71,7 +71,9 @@
             </Menu>
 
             <!--Draggable-->
-            <Grid Grid.Column="1" x:Name="grdHeader"  PreviewMouseLeftButtonDown="Grid_PreviewMouseLeftButtonDown" Background="#282a36">
+            <Grid Grid.Column="1" x:Name="grdHeader">
+                <Grid MouseLeftButtonDown="Grid_PreviewMouseLeftButtonDown" Background="#282a36">
+                </Grid>
             </Grid>
 
             <!--Custom window controls-->
