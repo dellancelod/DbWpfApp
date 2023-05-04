@@ -25,19 +25,19 @@ namespace DbWpfApp.Services
         }
 
         public static readonly DependencyProperty TextProperty =
-            DependencyProperty.Register("Text", typeof(string), typeof(Toast), new PropertyMetadata("Sample Text"));
+            DependencyProperty.Register(nameof(Text), typeof(string), typeof(Toast), new PropertyMetadata("Placeholder"));
 
         public static readonly DependencyProperty ToastIconProperty =
-            DependencyProperty.Register("ToastIcon", typeof(ToastIconType), typeof(Toast), new PropertyMetadata(ToastIconType.None, OnToastIconChanged));
+            DependencyProperty.Register(nameof(ToastIcon), typeof(ToastIconType), typeof(Toast), new PropertyMetadata(ToastIconType.None, OnToastIconChanged));
 
         public static readonly DependencyProperty IsToastVisibleProperty =
-            DependencyProperty.Register("IsToastVisible", typeof(bool), typeof(Toast), new PropertyMetadata(false, OnIsToastVisibleChanged));
+            DependencyProperty.Register(nameof(IsToastVisible), typeof(bool), typeof(Toast), new PropertyMetadata(false, OnIsToastVisibleChanged));
 
         public static readonly DependencyProperty DurationProperty =
-            DependencyProperty.Register("Duration", typeof(TimeSpan), typeof(Toast), new PropertyMetadata(TimeSpan.FromSeconds(10), OnDurationChanged));
+            DependencyProperty.Register(nameof(Duration), typeof(TimeSpan), typeof(Toast), new PropertyMetadata(TimeSpan.FromSeconds(10), OnDurationChanged));
 
         public static readonly DependencyProperty ImageGeometryProperty =
-            DependencyProperty.Register("ImageGeometry", typeof(Geometry), typeof(Toast));
+            DependencyProperty.Register(nameof(ImageGeometry), typeof(Geometry), typeof(Toast));
 
         public string Text
         {
@@ -69,17 +69,17 @@ namespace DbWpfApp.Services
             set { SetValue(ImageGeometryProperty, value); }
         }
 
-        private static void OnDurationChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnDurationChanged(DependencyObject toastObject, DependencyPropertyChangedEventArgs args)
         {
-            var control = (Toast)d;
-            var value = (TimeSpan)e.NewValue;
+            var control = (Toast)toastObject;
+            var value = (TimeSpan)args.NewValue;
             control.Duration = value;
         }
 
-        private static void OnIsToastVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnIsToastVisibleChanged(DependencyObject toastObj, DependencyPropertyChangedEventArgs args)
         {
-            var c = (Toast)d;
-            var value = (bool)e.NewValue;
+            var c = (Toast)toastObj;
+            var value = (bool)args.NewValue;
             c.IsToastVisible = value;
         }
 
@@ -87,15 +87,15 @@ namespace DbWpfApp.Services
         {
             if (IsToastVisible)
             {
-                DoubleAnimation da = new DoubleAnimation { From = 1, To = 0, Duration = TimeSpan.FromSeconds(Duration.Seconds) };
+                DoubleAnimation doubleAnimation = new DoubleAnimation { From = 1, To = 0, Duration = TimeSpan.FromSeconds(Duration.Seconds) };
 
                 CubicEase cubicEase = new CubicEase();
                 cubicEase.EasingMode = EasingMode.EaseInOut;
 
-                da.EasingFunction = cubicEase;
+                doubleAnimation.EasingFunction = cubicEase;
 
-                da.Completed += (sender, e) => IsToastVisible = false;
-                BeginAnimation(OpacityProperty, da);
+                doubleAnimation.Completed += (sender, e) => IsToastVisible = false;
+                BeginAnimation(OpacityProperty, doubleAnimation);
             }
             else
             {
@@ -103,10 +103,10 @@ namespace DbWpfApp.Services
             }
         }
 
-        private static void OnToastIconChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnToastIconChanged(DependencyObject toastObject, DependencyPropertyChangedEventArgs args)
         {
-            var control = (Toast)d;
-            var value = (ToastIconType)e.NewValue;
+            var control = (Toast)toastObject;
+            var value = (ToastIconType)args.NewValue;
 
             switch (value)
             {
