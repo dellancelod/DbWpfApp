@@ -110,15 +110,26 @@ namespace DbWpfApp.ViewModels
         private bool CanAddToDatabaseCommandExecute(object p) => true;
         private void OnAddToDatabaseCommandExecute(object p)
         {
-            _dataManager.AppItems.SaveApp(new AppItem
-            {
-                AppName = AppName,
-                UserName = UserName,
-                Comment = Comment
-            });
-
-            AppList = _dataManager.AppItems.GetApps();
-
+            if (!string.IsNullOrWhiteSpace(AppName) && !string.IsNullOrWhiteSpace(UserName))
+                {
+                    try
+                    {
+                        _dataManager.AppItems.SaveApp(new AppItem
+                        {
+                            AppName = AppName,
+                            UserName = UserName,
+                            Comment = Comment
+                        });
+                        _toastService.ShowToast($"Запис додано!", Toast.ToastIconType.Success);
+                        AppList = _dataManager.AppItems.GetApps();
+                    }
+                    catch
+                    {
+                        _toastService.ShowToast("Під час додавання виникла помилка!", Toast.ToastIconType.Warning);
+                    }
+                }
+                else
+                    _toastService.ShowToast("Заповніть поля назви застосунку та імені!", Toast.ToastIconType.Warning);
         }
         #endregion
 
@@ -127,10 +138,16 @@ namespace DbWpfApp.ViewModels
         private bool CanDeleteFromDatabaseCommandExecute(object p) => true;
         private void OnDeleteFromDatabaseCommandExecute(object p)
         {
-            try {
-                _dataManager.AppItems.DeleteApp(Id);
-                _toastService.ShowToast($"Запис {Id} видалений!", Toast.ToastIconType.Success);
-                AppList = _dataManager.AppItems.GetApps();
+            try
+            {
+                if (_dataManager.AppItems.GetAppItem(Id) != null)
+                {
+                    _dataManager.AppItems.DeleteApp(Id);
+                    _toastService.ShowToast($"Запис {Id} видалений!", Toast.ToastIconType.Success);
+                    AppList = _dataManager.AppItems.GetApps();
+                }
+                else
+                    _toastService.ShowToast($"Запису {Id} не існує!", Toast.ToastIconType.Warning);
             }
             catch
             {
@@ -148,14 +165,19 @@ namespace DbWpfApp.ViewModels
             {
                 try
                 {
-                    _dataManager.AppItems.UpdateApp(Id, new AppItem
+                    if (_dataManager.AppItems.GetAppItem(Id) != null)
                     {
-                        AppName = AppName,
-                        UserName = UserName,
-                        Comment = Comment
-                    });
-                    _toastService.ShowToast($"Запис {Id} оновлено!", Toast.ToastIconType.Success);
-                    AppList = _dataManager.AppItems.GetApps();
+                        _dataManager.AppItems.UpdateApp(Id, new AppItem
+                        {
+                            AppName = AppName,
+                            UserName = UserName,
+                            Comment = Comment
+                        });
+                        _toastService.ShowToast($"Запис {Id} оновлено!", Toast.ToastIconType.Success);
+                        AppList = _dataManager.AppItems.GetApps();
+                    }
+                    else
+                        _toastService.ShowToast($"Запису {Id} не існує!", Toast.ToastIconType.Warning);
                 }
                 catch
                 {
@@ -163,10 +185,7 @@ namespace DbWpfApp.ViewModels
                 }
             }
             else
-            {
                 _toastService.ShowToast("Заповніть поля назви застосунку та імені!", Toast.ToastIconType.Warning);
-            }
-            
         }
 
         #endregion
@@ -182,6 +201,8 @@ namespace DbWpfApp.ViewModels
             UpdateToDatabaseCommand = new LambdaCommand(OnUpdateToDatabaseCommandExecute, CanUpdateToDatabaseCommandExecute);
 
             CloseApplicationCommand = new LambdaCommand(OnCloseApplicationCommandExecute, CanCloseApplicationCommandExecute);
+
+            ToastProp.Opacity = 0;
 
             _toastService = toastService;
 
