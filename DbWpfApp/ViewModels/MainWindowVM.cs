@@ -17,16 +17,10 @@ namespace DbWpfApp.ViewModels
 {
     internal class MainWindowVM : ViewModel
     {
-        private readonly DataManager _dataManager;
-        private readonly ToastService _toastService;
 
-        #region ToastProp
-        private Toast _ToastProp = new Toast();
-        public Toast ToastProp
-        {
-            get => _ToastProp;
-            set => Set(ref _ToastProp, value);
-        } 
+        #region Services
+        private readonly DataManager _dataManager;
+        private readonly ToastService _toastService; 
         #endregion
 
         #region Properties
@@ -80,7 +74,6 @@ namespace DbWpfApp.ViewModels
         }
         #endregion
 
-
         #region AppList
 
         private List<AppItem> _AppList;
@@ -89,6 +82,16 @@ namespace DbWpfApp.ViewModels
         {
             get => _AppList;
             set => Set(ref _AppList, value);
+        }
+        #endregion
+
+
+        #region ToastProp
+        private Toast _ToastProp = new Toast();
+        public Toast ToastProp
+        {
+            get => _ToastProp;
+            set => Set(ref _ToastProp, value);
         }
         #endregion
 
@@ -194,18 +197,19 @@ namespace DbWpfApp.ViewModels
 
         public MainWindowVM(DataManager dataManager, ToastService toastService)
         {
+            // Database
             _dataManager = dataManager;
             AppList = _dataManager.AppItems.GetApps();
+
+            // Commands
             AddToDatabaseCommand = new LambdaCommand(OnAddToDatabaseCommandExecute, CanAddToDatabaseCommandExecute);
             DeleteFromDatabaseCommand = new LambdaCommand(OnDeleteFromDatabaseCommandExecute, CanDeleteFromDatabaseCommandExecute);
             UpdateToDatabaseCommand = new LambdaCommand(OnUpdateToDatabaseCommandExecute, CanUpdateToDatabaseCommandExecute);
-
             CloseApplicationCommand = new LambdaCommand(OnCloseApplicationCommandExecute, CanCloseApplicationCommandExecute);
 
-            ToastProp.Opacity = 0;
-
+            // Toasts
             _toastService = toastService;
-
+            ToastProp.Opacity = 0;
             _toastService.ToastMessageRecieved += (message, icon) =>
             {
                 ToastProp.Text = message;
