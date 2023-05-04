@@ -24,6 +24,31 @@ namespace DbWpfApp.Data
             }
         }
 
+        public AppItem GetAppItem(int id)
+        {
+            using (SQLiteConnection connection =
+                new SQLiteConnection(SQLiteDataAccess.LoadConnectionString()))
+            {
+                AppItem returnApp = null;
+                connection.Open();
+                string getApp = $"select * from apps where id = {id};";
+                SQLiteCommand command = new SQLiteCommand(getApp, connection);
+                SQLiteDataReader reader = command.ExecuteReader();
+                if (reader.Read()) 
+                {
+                    returnApp = new AppItem
+                    {
+                        Id = reader.GetInt32(0),
+                        AppName = (string)reader["app_name"],
+                        UserName = (string)reader["user_name"],
+                        Comment = (string)reader["comment"]
+                    };
+                }
+                    
+                return returnApp;
+            }
+        }
+
         public List<AppItem> GetApps()
         {
             using (SQLiteConnection connection =
