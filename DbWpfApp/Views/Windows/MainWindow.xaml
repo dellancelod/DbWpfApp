@@ -54,7 +54,7 @@
                 <MenuItem Header="Файл">
                     <MenuItem Header="Вихід" Foreground="#282a36" Command="{Binding CloseApplicationCommand}"></MenuItem>
                 </MenuItem>
-                <MenuItem Header="Інфо"/>
+                <MenuItem Header="Інфо" Command="{Binding ShowInfoCommand}"/>
             </Menu>
 
             <!--Draggable-->

@@ -193,6 +193,13 @@ namespace DbWpfApp.ViewModels
 
         #endregion
 
+        public ICommand ShowInfoCommand { get; }
+        private bool CanShowInfoCommandExecute(object p) => true;
+        private void OnShowInfoCommandExecute(object p)
+        {
+            _toastService.ShowToast("Вітаю у застосунку для роботи з базою даних!", Toast.ToastIconType.None);
+        }
+
         #endregion
 
         public MainWindowVM(DataManager dataManager, ToastService toastService)
@@ -206,6 +213,7 @@ namespace DbWpfApp.ViewModels
             DeleteFromDatabaseCommand = new LambdaCommand(OnDeleteFromDatabaseCommandExecute, CanDeleteFromDatabaseCommandExecute);
             UpdateToDatabaseCommand = new LambdaCommand(OnUpdateToDatabaseCommandExecute, CanUpdateToDatabaseCommandExecute);
             CloseApplicationCommand = new LambdaCommand(OnCloseApplicationCommandExecute, CanCloseApplicationCommandExecute);
+            ShowInfoCommand = new LambdaCommand(OnShowInfoCommandExecute, CanShowInfoCommandExecute);
 
             // Toasts
             _toastService = toastService;
