@@ -127,12 +127,15 @@ namespace DbWpfApp.ViewModels
         private bool CanDeleteFromDatabaseCommandExecute(object p) => true;
         private void OnDeleteFromDatabaseCommandExecute(object p)
         {
-            _dataManager.AppItems.DeleteApp(Id);
-
-            AppList = _dataManager.AppItems.GetApps();
-
-            _toastService.ShowToast("Hi!", Toast.ToastIconType.Success);
-
+            try {
+                _dataManager.AppItems.DeleteApp(Id);
+                _toastService.ShowToast($"Запис {Id} видалений!", Toast.ToastIconType.Success);
+                AppList = _dataManager.AppItems.GetApps();
+            }
+            catch
+            {
+                _toastService.ShowToast("Під час видалення виникла помилка!", Toast.ToastIconType.Warning);
+            }
         }
         #endregion
 
@@ -141,14 +144,29 @@ namespace DbWpfApp.ViewModels
         private bool CanUpdateToDatabaseCommandExecute(object p) => true;
         private void OnUpdateToDatabaseCommandExecute(object p)
         {
-            _dataManager.AppItems.UpdateApp(Id, new AppItem
+            if (!string.IsNullOrWhiteSpace(AppName) && !string.IsNullOrWhiteSpace(UserName))
             {
-                AppName = AppName,
-                UserName = UserName,
-                Comment = Comment
-            });
-
-            AppList = _dataManager.AppItems.GetApps();
+                try
+                {
+                    _dataManager.AppItems.UpdateApp(Id, new AppItem
+                    {
+                        AppName = AppName,
+                        UserName = UserName,
+                        Comment = Comment
+                    });
+                    _toastService.ShowToast($"Запис {Id} оновлено!", Toast.ToastIconType.Success);
+                    AppList = _dataManager.AppItems.GetApps();
+                }
+                catch
+                {
+                    _toastService.ShowToast("Сталася помилка під час оновлення!", Toast.ToastIconType.Warning);
+                }
+            }
+            else
+            {
+                _toastService.ShowToast("Заповніть поля назви застосунку та імені!", Toast.ToastIconType.Warning);
+            }
+            
         }
 
         #endregion
