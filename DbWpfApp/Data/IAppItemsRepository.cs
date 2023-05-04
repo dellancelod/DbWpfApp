@@ -13,5 +13,6 @@ namespace DbWpfApp.Data
         void SaveApp(AppItem appItem);
         void DeleteApp(int id);
         void UpdateApp(int id, AppItem appItem);
+        AppItem GetAppItem(int id);
     }
 }
