@@ -5,6 +5,7 @@ using DbWpfApp.Services;
 using DbWpfApp.ViewModels.Base;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,13 +20,14 @@ namespace DbWpfApp.ViewModels
         private readonly DataManager _dataManager;
         private readonly ToastService _toastService;
 
-        private Toast _toast;
-
+        #region ToastProp
+        private Toast _ToastProp = new Toast();
         public Toast ToastProp
         {
-            get => _toast;
-            set => Set(ref _toast, value);
-        }
+            get => _ToastProp;
+            set => Set(ref _ToastProp, value);
+        } 
+        #endregion
 
         #region Properties
         #region Id
@@ -117,8 +119,6 @@ namespace DbWpfApp.ViewModels
 
             AppList = _dataManager.AppItems.GetApps();
 
-            _toastService.ShowToast("My great toast!");
-
         }
         #endregion
 
@@ -130,6 +130,9 @@ namespace DbWpfApp.ViewModels
             _dataManager.AppItems.DeleteApp(Id);
 
             AppList = _dataManager.AppItems.GetApps();
+
+            _toastService.ShowToast("Hi!", Toast.ToastIconType.Success);
+
         }
         #endregion
 
@@ -164,13 +167,12 @@ namespace DbWpfApp.ViewModels
 
             _toastService = toastService;
 
-            _toastService.ToastMessageRecieved += (message) =>
+            _toastService.ToastMessageRecieved += (message, icon) =>
             {
                 ToastProp.Text = message;
+                ToastProp.ToastIcon = icon;
+                ToastProp.IsToastVisible = true;
             };
-
-
-            _toastService.ShowToast("My great toast!");
         }
     }
 }

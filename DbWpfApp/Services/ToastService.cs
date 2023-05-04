@@ -8,11 +8,11 @@ namespace DbWpfApp.Services
 {
     internal class ToastService
     {
-        public event Action<string> ToastMessageRecieved;
+        public event Action<string, Toast.ToastIconType> ToastMessageRecieved;
 
-        public void ShowToast(string message)
+        public void ShowToast(string message, Toast.ToastIconType icon)
         {
-            ToastMessageRecieved(message);
+            ToastMessageRecieved(message, icon);
         }
     }
 }
