@@ -47,7 +47,7 @@
         <EventTrigger RoutedEvent="FrameworkElement.Loaded">
             <BeginStoryboard>
                 <Storyboard>
-                    <DoubleAnimation Storyboard.TargetName="AppWindow" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:1" />
+                    <DoubleAnimation Storyboard.TargetName="AppWindow" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="{Binding AnimationDuration}" />
                 </Storyboard>
             </BeginStoryboard>
         </EventTrigger>

@@ -20,10 +20,33 @@ namespace DbWpfApp.ViewModels
 
         #region Services
         private readonly DataManager _dataManager;
-        private readonly ToastService _toastService; 
+        private readonly ToastService _toastService;
         #endregion
 
         #region Properties
+
+        // Application properties
+        #region Title
+        private string _Title = "Робота з Базою Даних";
+
+        public string Title
+        {
+            get => _Title;
+            set => Set(ref _Title, value);
+        }
+        #endregion
+
+        #region AnimationDuration
+        private Duration _AnimationDuration = TimeSpan.FromSeconds(1);
+
+        public Duration AnimationDuration
+        {
+            get => _AnimationDuration;
+            set => Set(ref _AnimationDuration, value);
+        }
+        #endregion
+
+        // Database properties
         #region Id
         private int _id;
 
@@ -64,16 +87,6 @@ namespace DbWpfApp.ViewModels
         }
         #endregion 
 
-        #region Title
-        private string _Title = "Робота з Базою Даних";
-
-        public string Title
-        {
-            get => _Title;
-            set => Set(ref _Title, value);
-        }
-        #endregion
-
         #region AppList
 
         private List<AppItem> _AppList;
@@ -85,7 +98,7 @@ namespace DbWpfApp.ViewModels
         }
         #endregion
 
-
+        //Notifications
         #region ToastProp
         private Toast _ToastProp = new Toast();
         public Toast ToastProp
