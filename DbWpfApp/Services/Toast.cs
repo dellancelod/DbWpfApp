@@ -34,7 +34,7 @@ namespace DbWpfApp.Services
             DependencyProperty.Register(nameof(IsToastVisible), typeof(bool), typeof(Toast), new PropertyMetadata(false, OnIsToastVisibleChanged));
 
         public static readonly DependencyProperty DurationProperty =
-            DependencyProperty.Register(nameof(Duration), typeof(TimeSpan), typeof(Toast), new PropertyMetadata(TimeSpan.FromSeconds(10), OnDurationChanged));
+            DependencyProperty.Register(nameof(Duration), typeof(TimeSpan), typeof(Toast), new PropertyMetadata(TimeSpan.FromSeconds(5), OnDurationChanged));
 
         public static readonly DependencyProperty ImageGeometryProperty =
             DependencyProperty.Register(nameof(ImageGeometry), typeof(Geometry), typeof(Toast));
