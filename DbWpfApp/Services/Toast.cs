@@ -89,17 +89,15 @@ namespace DbWpfApp.Services
             {
                 DoubleAnimation doubleAnimation = new DoubleAnimation { From = 1, To = 0, Duration = TimeSpan.FromSeconds(Duration.Seconds) };
 
-                CubicEase cubicEase = new CubicEase();
-                cubicEase.EasingMode = EasingMode.EaseInOut;
+                CubicEase cubicEase = new CubicEase
+                {
+                    EasingMode = EasingMode.EaseInOut
+                };
 
                 doubleAnimation.EasingFunction = cubicEase;
 
                 doubleAnimation.Completed += (sender, e) => IsToastVisible = false;
                 BeginAnimation(OpacityProperty, doubleAnimation);
-            }
-            else
-            {
-                Opacity = 0;
             }
         }
 
